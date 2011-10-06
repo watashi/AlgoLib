@@ -13,7 +13,7 @@ public class ModLinear {
 	}
 
 	// x % u[1] = u[0] && x % v[1] = v[0] => x % ret[1] == ret[0]
-	static BigInteger[] modLinear(BigInteger[] u, BigInteger[] v) throws Exception {
+	static BigInteger[] modLinearSys(BigInteger[] u, BigInteger[] v) throws Exception {
 		BigInteger[] g = extGcd(u[1], v[1]);
 		BigInteger z = u[0].subtract(v[0]);
 		if (z.mod(g[0]).signum() != 0) {
@@ -22,7 +22,7 @@ public class ModLinear {
 			z = g[2].multiply(z.divide(g[0]));
 			BigInteger[] ret = new BigInteger[]{
 				v[0].add(v[1].multiply(z)),
-					u[1].divide(g[0]).multiply(v[1])
+				u[1].divide(g[0]).multiply(v[1])
 			};
 			ret[0] = ret[0].mod(ret[1]);
 			return ret;
