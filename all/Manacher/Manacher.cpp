@@ -1,4 +1,4 @@
-// Manacher's algorithm: A simple linear time algorithm for finding longest palindrome sub-string
+// Manacher's algorithm: A linear time algorithm to find all palindrome substrings
 
 #include <algorithm>
 
