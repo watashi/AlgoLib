@@ -1,1 +1,0 @@
-../../all/RangeMinimumQuery/RMQ.cpp

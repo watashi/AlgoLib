@@ -1,1 +1,0 @@
-../all/Manacher/Manacher.cpp
