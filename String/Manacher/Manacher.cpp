@@ -14,9 +14,9 @@ void manacher(int n, const char s[], int p[]) {
 			++l;
 		}
 		p[i] = l;
-		if (k < 2 * b) {
+		if (k < 2 * b - 1) {
 			j = i;
-			k = 2 * b;
+			k = 2 * b - 1;
 		}
 	}
 }
