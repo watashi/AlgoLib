@@ -24,31 +24,31 @@ struct SCC {
     e[a].push_back(b);
   }
 
-  int idx[MAXN], low[MAXN];
+  int dfn[MAXN], low[MAXN];
   int timestamp;
   stack<int> s;
 
   void dfs(int v) {
-    idx[v] = timestamp++;
-    low[v] = idx[v];
+    dfn[v] = timestamp++;
+    low[v] = dfn[v];
     s.push(v);
     for (vector<int>::const_iterator w = e[v].begin(); w != e[v].end(); ++w) {
-      if (idx[*w] == -1) {
+      if (dfn[*w] == -1) {
         dfs(*w);
         low[v] = min(low[v], low[*w]);
-      } else if (idx[*w] != -2) {
-        low[v] = min(low[v], idx[*w]);
+      } else if (dfn[*w] != -2) {
+        low[v] = min(low[v], dfn[*w]);
       }
     }
 
-    if (low[v] == idx[v]) {
+    if (low[v] == dfn[v]) {
       vector<int> t;
       do {
         int w = s.top();
         s.pop();
         id[w] = (int)scc.size();
         t.push_back(w);
-        idx[w] = -2;
+        dfn[w] = -2;
       } while (t.back() != v);
       scc.push_back(t);
     }
@@ -58,10 +58,10 @@ struct SCC {
     scc.clear();
     stack<int>().swap(s);
     timestamp = 0;
-    fill(idx, idx + n, -1);
+    fill(dfn, dfn + n, -1);
 
     for (int i = 0; i < n; ++i) {
-      if (idx[i] == -1) {
+      if (dfn[i] == -1) {
         dfs(i);
       }
     }
