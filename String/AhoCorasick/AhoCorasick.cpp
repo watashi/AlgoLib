@@ -33,7 +33,7 @@ struct AhoCorasick {
     return p;
   }
 
-  void build() {
+  void build() {  // !!
     queue<int> bfs;
     fail[0] = 0;
     for (int i = 0; i < CHARSET; ++i) {

@@ -1,21 +1,21 @@
 import Data.Array (assocs, listArray, (!))
-import qualified Data.ByteString as C
+import Test.QuickCheck
 
-palindrome :: C.ByteString -> [(Int, Int, Int)]
+palindrome :: Eq a => [a] -> [(Int, Int, Int)]
 palindrome str = [(l, r, go l r) | l <- [1 .. n], r <- [l, l + 1], r <= n]
   where
-    n = C.length str
-    a = listArray (1, n) $ C.unpack str
+    n = length str
+    a = listArray (1, n) str
     go l r
       | l < 1 || r > n  = 0
       | a!l /= a!r      = 0
       | otherwise       = succ $ go (pred l) (succ r)
 
-manacher :: C.ByteString -> [(Int, Int, Int)]
+manacher :: Eq a => [a] -> [(Int, Int, Int)]
 manacher str = [(div i 2, div (i + 1) 2, e) | (i, e) <- assocs b]
   where
-    n = C.length str
-    a = listArray (1, n) $ C.unpack str
+    n = length str
+    a = listArray (1, n) str
     pal l r
       | l < 1 || r > n = 0
       | a!l /= a!r     = 0
@@ -29,3 +29,19 @@ manacher str = [(div i 2, div (i + 1) 2, e) | (i, e) <- assocs b]
         t = s + pal (l - s) (r + s)
         (e', c') = max (e, c) (2 * (r + t - 1), k)
 
+prob_palindrome_model :: Eq a => [a] -> Bool
+prob_palindrome_model s = manacher s == palindrome s
+
+data Color = Red | Green | Blue deriving (Eq, Show)
+instance Arbitrary Color where
+  arbitrary = elements $ concatMap (uncurry replicate) $
+    [(100, Red), (10, Green), (1, Blue)]
+
+main :: IO ()
+main = do
+  check (prob_palindrome_model :: [Bool] -> Bool)
+  check (prob_palindrome_model :: [Color] -> Bool)
+  check (prob_palindrome_model :: [Char] -> Bool)
+  where
+    check :: Testable prop => prop -> IO ()
+    check = quickCheckWith stdArgs{maxSuccess=1000}
