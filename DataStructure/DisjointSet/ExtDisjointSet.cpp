@@ -1,7 +1,7 @@
 struct DisjointSet {
   int p[MAXN], s[MAXN], t[MAXN];
 
-  static inline int RE(int i) { return -1 - i; }
+  static inline int RE(int i) { return ~i; }  // !!
 
   void init(int n) {
     for (int i = 0; i < n; ++i) {
