@@ -2,35 +2,35 @@
 
 using namespace std;
 
-typedef long long int64;
+typedef long long llint;
 
 struct Matrix {
   static const int MAXN = 128;
 
   int r, c;
-  int64 a[MAXN][MAXN];
+  llint a[MAXN][MAXN];
 
-  int64* operator[](int i) {
+  llint* operator[](int i) {
     return a[i];
   }
 
-  const int64* operator[](int i) const {
+  const llint* operator[](int i) const {
     return a[i];
   }
 
-  void init(int r, int c) {
-    this->r = r;
-    this->c = c;
+  void init(int row, int col) {
+    this->r = row;
+    this->c = col;
   }
 
-  void fill(int r, int c, int64 x = 0) {
-    init(r, c);
+  void fill(int row, int col, llint x = 0) {
+    init(row, col);
     for (int i = 0; i < r; ++i) {
       ::fill(a[i], a[i] + c, x);
     }
   }
 
-  void eye(int n, int64 x = 1) {
+  void eye(int n, llint x = 1) {
     fill(n, n, 0);
     for (int i = 0; i < n; ++i) {
       a[i][i] = x;
@@ -45,7 +45,7 @@ struct Matrix {
   }
 };
 
-void add(const Matrix& a, const Matrix& b, int64 m, Matrix& ret) {
+void add(const Matrix& a, const Matrix& b, llint m, Matrix& ret) {
   static Matrix c;
   c.set(a);
   for (int i = 0; i < b.r; ++i) {
@@ -59,12 +59,12 @@ void add(const Matrix& a, const Matrix& b, int64 m, Matrix& ret) {
   ret.set(c);
 }
 
-void mul(const Matrix& a, const Matrix& b, int64 m, Matrix& ret) {
+void mul(const Matrix& a, const Matrix& b, llint m, Matrix& ret) {
   static Matrix c;
   c.init(a.r, b.c);
   for (int i = 0; i < c.r; ++i) {
     for (int j = 0; j < c.c; ++j) {
-      int64 x = 0;
+      llint x = 0;
       for (int k = 0; k < a.c; ++k) {
         x += a[i][k] * b[k][j] % m;
       }
@@ -74,7 +74,7 @@ void mul(const Matrix& a, const Matrix& b, int64 m, Matrix& ret) {
   ret.set(c);
 }
 
-void pow(const Matrix& a, int64 b, int64 m, Matrix& ret) {
+void pow(const Matrix& a, llint b, llint m, Matrix& ret) {
   static Matrix c;
   c.set(a);
   ret.eye(c.r);
