@@ -14,8 +14,8 @@ struct Tarjan {
   vector<pair<int, int> > bridge;
   vector<vector<pair<int, int> > > bcc;
 
-  void init(int size) {
-    n = size;
+  void init(int n) {
+    this->n = n;
     for (int i = 0; i < n; ++i) {
       e[i].clear();
     }

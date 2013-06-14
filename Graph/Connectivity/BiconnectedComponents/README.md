@@ -18,6 +18,8 @@
 
 * [Bridgeless graphs](http://en.wikipedia.org/wiki/Bridge_%28graph_theory%29#Bridgeless_graphs)
 
+* [How to increase the size of min-cut in graph by adding minimum number of edges](http://stackoverflow.com/questions/12757476/how-to-increase-the-size-of-min-cut-in-graph-by-adding-minimum-number-of-edges)
+
 #### Prob
 
 1. [CF45H](http://codeforces.com/problemset/problem/45/H) _Add minimum edges to ensure the graph is bridgeless_

@@ -1,3 +1,7 @@
+#include <utility>
+
+using namespace std;
+
 template<typename T>
 struct Indexer {
   const T* a;
@@ -12,15 +16,19 @@ struct Indexer {
 
 template<int MAXN>
 struct SuffixArray {
-  pair<int, int> suffix[MAXN];
-  int sa[MAXN], rank[MAXN], height[MAXN], h[MAXN];
+  int sa[MAXN], rank[MAXN], height[MAXN];
 
   void init(int n, const char a[MAXN]) {
-    sa[0] = 0;
+    if (n == 1) {
+      sa[0] = rank[0] = 0;
+      return;
+    }
+
     for (int i = 0; i < n; ++i) {
       rank[i] = a[i];
     }
     for (int m = 1; m < n; m <<= 1) {
+      static pair<int, int> suffix[MAXN];
       for (int i = 0; i < n; ++i) {
         sa[i] = i;
         suffix[i] = make_pair(rank[i], i + m < n ? rank[i + m] : -1);
@@ -35,6 +43,7 @@ struct SuffixArray {
       }
     }
 
+    static int h[MAXN];
     for (int i = 0; i < n; ++i) {
       if (rank[i] == 0) {
         h[i] = 0;
@@ -52,5 +61,5 @@ struct SuffixArray {
   }
 };
 
-SuffixArray<MAXN> sa;
+SuffixArray<1 << 17> sa;
 
