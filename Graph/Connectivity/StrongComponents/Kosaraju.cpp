@@ -12,8 +12,8 @@ struct SCC {
   int id[MAXN];
   vector<vector<int> > scc;
 
-  void init(int _n) {
-    n = _n;
+  void init(int n) {
+    this->n = n;
     for (int i = 0; i < n; ++i) {
       e[i].clear();
       re[i].clear();

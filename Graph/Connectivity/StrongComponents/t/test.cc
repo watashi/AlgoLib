@@ -18,7 +18,7 @@ using namespace boost;
 const int MAXN = 100100;
 const int MAXM = 500000;
 
-int compid[MAXN];
+int id[MAXN];
 SCC<MAXN> scc;
 
 template<typename T>
@@ -50,12 +50,12 @@ int main() {
     }
     scc.gao();
 
-    int n = strong_components(g, compid);
+    int n = strong_components(g, id);
     printf("%d %d\n", n, scc.gao());
     vector<vector<int> > v(n), w(scc.scc);
     for (int i = 0; i < MAXN; ++i) {
-      // printf("%d %d\n", scc.compid[i], compid[i]);
-      v[compid[i]].push_back(i);
+      // printf("%d %d\n", scc.id[i], id[i]);
+      v[id[i]].push_back(i);
     }
     assert(normalize(v) == normalize(w));
   }

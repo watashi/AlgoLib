@@ -11,9 +11,9 @@ struct Hungary {
 
   bool mark[MAXX];
 
-  void init(int _nx, int _ny) {
-    nx = _nx;
-    ny = _ny;
+  void init(int nx, int ny) {
+    this->nx = nx;
+    this->ny = ny;
     for (int i = 0; i < nx; ++i) {
       e[i].clear();
     }
