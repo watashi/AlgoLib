@@ -26,5 +26,5 @@ task :test do
     sh "#{CXX} -lgtest -o #{BIN} #{obj * ' '}"
   end
   Rake::Task[BIN.to_sym].invoke
-  sh "./#{BIN}"
+  sh "ulimit -s unlimited && ./#{BIN}"
 end

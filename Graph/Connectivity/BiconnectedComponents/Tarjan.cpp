@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// TODO: cannot handle duplicate edges
 template<int MAXN>
 struct Tarjan {
   int n;
@@ -22,7 +23,7 @@ struct Tarjan {
   }
 
   void add(int a, int b) {
-    // assert(find(a.begin(), a.end(), b) == a.end());
+    // assert(find(e[a].begin(), e[a].end(), b) == e[a].end());
     e[a].push_back(b);
     e[b].push_back(a);
   }

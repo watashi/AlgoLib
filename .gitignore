@@ -1,4 +1,6 @@
+*.o
 *.doc
 *.pdf
 todo
 prob
+gtest
