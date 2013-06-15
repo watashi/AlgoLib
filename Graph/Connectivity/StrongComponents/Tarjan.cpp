@@ -5,7 +5,7 @@
 using namespace std;
 
 template<int MAXN>
-struct SCC {
+struct SCCTarjan {
   int n;
   vector<int> e[MAXN];
 
@@ -20,7 +20,6 @@ struct SCC {
   }
 
   void add(int a, int b) {
-    // assert(find(a.begin(), a.end(), b) == a.end());
     e[a].push_back(b);
   }
 
