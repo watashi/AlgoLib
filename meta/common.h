@@ -4,9 +4,18 @@
 #include <gtest/gtest.h>
 
 #include <vector>
+#include <cstdlib>
 #include <algorithm>
 
 using namespace std;
+
+int rand(int n) {
+  return rand() % n;
+}
+
+int rand(int l, int r) {
+  return l + rand(r - l);
+}
 
 template<typename T>
 T normalize(T v) {

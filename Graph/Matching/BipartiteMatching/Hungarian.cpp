@@ -1,15 +1,16 @@
-// Maximum matchings in bipartite graphs
+// maximum matchings in bipartite graphs
+// maximum cardinality bipartite matching
+// O(|V||E|), generally fast
 
+#include <vector>
 #include <algorithm>
 
 using namespace std;
 
 template<int MAXX, int MAXY>
-struct Hungary {
+struct Hungarian {
   int nx, ny, mx[MAXX], my[MAXY];
   vector<int> e[MAXX];
-
-  bool mark[MAXX];
 
   void init(int nx, int ny) {
     this->nx = nx;
@@ -22,6 +23,8 @@ struct Hungary {
   void add(int a, int b) {
     e[a].push_back(b);
   }
+
+  bool mark[MAXX];
 
   bool augment(int i) {
     if (!mark[i]) {
@@ -51,4 +54,3 @@ struct Hungary {
   }
 };
 
-Hungary<1024, 1024> h;
