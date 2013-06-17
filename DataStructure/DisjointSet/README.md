@@ -1,7 +1,11 @@
 ## DisjointSet.cpp
 
+* Complexity: O(n)
+
 ## ExtDisjointSet.cpp
 
+* Friend-enemy model
+* With size maintained
 * Complexity: O(n)
 
 #### Wiki

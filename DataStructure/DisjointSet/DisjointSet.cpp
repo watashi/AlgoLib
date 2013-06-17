@@ -1,7 +1,12 @@
+#include <vector>
+
+using namespace std;
+
 struct DisjointSet {
-  int p[MAXN];
+  vector<int> p;
 
   void init(int n) {
+    p.resize(n);
     for (int i = 0; i < n; ++i) {
       p[i] = i;
     }

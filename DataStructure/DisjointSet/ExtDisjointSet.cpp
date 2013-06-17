@@ -1,9 +1,16 @@
-struct DisjointSet {
-  int p[MAXN], s[MAXN], t[MAXN];
+#include <vector>
+
+using namespace std;
+
+struct ExtDisjointSet {
+  vector<int> p, s, t;
 
   static inline int RE(int i) { return ~i; }  // !!
 
   void init(int n) {
+    p.resize(n);
+    s.resize(n);
+    t.resize(n);
     for (int i = 0; i < n; ++i) {
       p[i] = i;
       s[i] = 1;
@@ -44,5 +51,5 @@ struct DisjointSet {
       return 1;
     }
   }
-} ds;
+} eds;
 

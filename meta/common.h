@@ -9,11 +9,11 @@
 
 using namespace std;
 
-int rand(int n) {
+inline int rand(int n) {
   return rand() % n;
 }
 
-int rand(int l, int r) {
+inline int rand(int l, int r) {
   return l + rand(r - l);
 }
 
