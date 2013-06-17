@@ -1,3 +1,6 @@
+#include <algorithm> // copy
+
+using namespace std;
 
 template<int N> struct LG2 { static const int VAL = LG2<N / 2>::VAL + 1; };
 template<> struct LG2<0> { static const int VAL = -1; };
@@ -18,7 +21,7 @@ struct RMQ {
     return e[l] <= e[r] ? l : r;
   }
 
-  void init(int n, int e[MAXN]) {
+  void init(int n, T e[MAXN]) {
     this->n = n;
     copy(e, e + n, this->e);
     for (int i = 0; i < n; ++i) {
@@ -40,6 +43,4 @@ struct RMQ {
     return e[index(l, r)];
   }
 };
-
-RMQ<MAXN> rmq;
 
