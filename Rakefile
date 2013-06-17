@@ -1,9 +1,9 @@
 require 'rake'
 require 'rake/clean'
 
-BIN = 'gtest'
-SRC = 'meta/gtest.cc'
-INC = 'meta/'
+BIN = 't/gtest'
+SRC = 't/gtest.cc'
+INC = 't/'
 
 CXX = 'g++'
 CXXFLAGS = '-std=c++11 -O2 -Wall -Wextra -Wconversion'

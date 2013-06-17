@@ -1,15 +1,17 @@
-template<int MAXN, typename T = int>
+#include <vector>
+
+using namespace std;
+
+template<typename T = int>
 struct BIT {
-  int n;
-  T a[MAXN];
+  vector<T> a;
 
   void init(int n) {
-    this->n = n;
-    fill(a, a + n + 1, T());
+    vector<T>(n + 1).swap(a);
   }
 
   void add(int i, T v) {
-    for (int j = i + 1; j <= n; j = (j | (j - 1)) + 1) {
+    for (int j = i + 1; j < (int)a.size(); j = (j | (j - 1)) + 1) {
       a[j] += v;
     }
   }
