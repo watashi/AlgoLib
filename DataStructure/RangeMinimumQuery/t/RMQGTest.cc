@@ -11,7 +11,7 @@ TEST(RMQTest, Value) {
   const int N = 512;
   mt19937 rng;
   uniform_real_distribution<double> urd;
-  RMQ<N, double> rmq;
+  RMQ<double> rmq;
   vector<double> v(N);
 
   urd.__generate(v.begin(), v.end(), rng);
@@ -29,7 +29,7 @@ TEST(RMQTest, Index) {
   const int N = 513;
   mt19937 rng;
   uniform_int_distribution<char> uid('0', '9');
-  RMQ<N, char> rmq;
+  RMQ<char> rmq;
   string s(N, '\0');
 
   uid.__generate(s.begin(), s.end(), rng);
