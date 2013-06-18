@@ -6,7 +6,7 @@ SRC = 't/gtest.cc'
 INC = 't/'
 
 CXX = 'g++'
-CXXFLAGS = '-std=c++11 -O2 -Wall -Wextra -Wconversion'
+CXXFLAGS = '-std=c++11 -O2 -Wall -Wextra -Wconversion -D_GLIBCXX_DEBUG'
 
 CLEAN.include('*.o')
 
