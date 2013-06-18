@@ -1,18 +1,18 @@
 require 'rake'
 require 'rake/clean'
 
-BIN = 't/gtest'
-SRC = 't/gtest.cc'
-INC = 't/'
+BIN = 't/gtest_main'
+SRC = %w(t/gtest_main.cc t/gtest-all.cc)
+INC = File.join(Dir.pwd, 't/')
 
 CXX = 'g++'
 CXXFLAGS = '-std=c++11 -O2 -Wall -Wextra -Wconversion -D_GLIBCXX_DEBUG'
 
-CLEAN.include('*.o')
+CLEAN.include('**/*.o')
+CLOBBER.include(BIN)
 
 rule '.o' => '.cc' do |t|
-  inc = File.join(Dir.pwd, INC)
-  sh "#{CXX} -I#{inc} #{CXXFLAGS} -c -o #{t.name} #{t.source}"
+  sh "#{CXX} -I#{INC} #{CXXFLAGS} -c -o #{t.name} #{t.source}"
 end
 
 task :default => [:test]
@@ -20,10 +20,10 @@ task :default => [:test]
 task :test do
   dir = Rake.original_dir
   src = `find "#{dir}" -wholename '*GTest.cc'`.lines.map(&:chomp)
-  src << File.join(Dir.pwd, SRC)
+  src += SRC.map{|i| File.join(Dir.pwd, i)}
   obj = src.map{|i| i.ext('.o')}
   file BIN => obj do
-    sh "#{CXX} -lgtest -o #{BIN} #{obj * ' '}"
+    sh "#{CXX} -lpthread -o #{BIN} #{obj * ' '}"
   end
   Rake::Task[BIN.to_sym].invoke
   sh "ulimit -s unlimited && ./#{BIN}"

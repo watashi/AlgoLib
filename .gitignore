@@ -3,4 +3,4 @@
 *.pdf
 todo
 prob
-gtest
+t/gtest_main
