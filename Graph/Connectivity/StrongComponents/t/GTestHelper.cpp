@@ -12,8 +12,10 @@ using namespace boost;
 class SCCTest: public ::testing::TestWithParam<pair<int, int> > {
   protected:
     static const int MAXN = 100100;
-    SCC scc;
+    static SCC scc;
 };
+
+SCC SCCTest::scc;
 
 #define TEST_P_EX(a, b) TEST_P(a, b)
 

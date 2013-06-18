@@ -9,8 +9,10 @@ using namespace boost;
 class BigraphHungarianTest: public ::testing::TestWithParam<int> {
   protected:
     static const int MAXN = 5050;
-    Hungarian h;
+    static Hungarian h;
 };
+
+Hungarian BigraphHungarianTest::h;
 
 using graph_t = adjacency_list<vecS, vecS, undirectedS>;
 using vertex_t = graph_traits<graph_t>::vertex_descriptor;

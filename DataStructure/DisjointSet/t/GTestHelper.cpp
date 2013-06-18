@@ -37,8 +37,10 @@ protected:
     }
   }
 
-  DISJOINT_SET ds;
+  static DISJOINT_SET ds;
 };
+
+DISJOINT_SET DISJOINT_SET_TEST::ds;
 
 #define TEST_F_EX(a, b) TEST_F(a, b)
 

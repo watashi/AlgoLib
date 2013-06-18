@@ -17,7 +17,7 @@ end
 
 task :default => [:test]
 
-task :test do
+task :testbin do
   dir = Rake.original_dir
   src = `find "#{dir}" -wholename '*GTest.cc'`.lines.map(&:chomp)
   src += SRC.map{|i| File.join(Dir.pwd, i)}
@@ -26,5 +26,8 @@ task :test do
     sh "#{CXX} -lpthread -o #{BIN} #{obj * ' '}"
   end
   Rake::Task[BIN.to_sym].invoke
-  sh "ulimit -s unlimited && ./#{BIN}"
+end
+
+task :test => :testbin do
+  sh "ulimit -s unlimited && ./#{BIN} --gtest_shuffle"
 end
