@@ -4,26 +4,26 @@
 
 using namespace std;
 
-template<int MAXN>
 struct SCCTarjan {
   int n;
-  vector<int> e[MAXN];
+  vector<vector<int> > e;
 
-  int id[MAXN];
+  vector<int> id;
   vector<vector<int> > scc;
 
   void init(int n) {
     this->n = n;
-    for (int i = 0; i < n; ++i) {
-      e[i].clear();
-    }
+    vector<vector<int> >(n).swap(e);
+    id.resize(n);
+    dfn.resize(n);
+    low.resize(n);
   }
 
   void add(int a, int b) {
     e[a].push_back(b);
   }
 
-  int dfn[MAXN], low[MAXN];
+  vector<int> dfn, low;
   int timestamp;
   stack<int> s;
 
@@ -57,8 +57,8 @@ struct SCCTarjan {
     scc.clear();
     stack<int>().swap(s);
     timestamp = 0;
-    fill(dfn, dfn + n, -1);
 
+    fill(dfn.begin(), dfn.end(), -1);
     for (int i = 0; i < n; ++i) {
       if (dfn[i] == -1) {
         dfs(i);

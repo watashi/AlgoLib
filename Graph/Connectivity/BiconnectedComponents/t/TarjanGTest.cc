@@ -13,7 +13,7 @@ typedef adjacency_list<vecS, vecS, undirectedS,
 class BCCTarjanTest: public ::testing::TestWithParam<pair<int, int> > {
   protected:
     static const int MAXN = 100100;
-    Tarjan<MAXN> tarjan;  // share it to test init
+    Tarjan tarjan;
 };
 
 TEST_P(BCCTarjanTest, Random) {

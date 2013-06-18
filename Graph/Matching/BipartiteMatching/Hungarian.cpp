@@ -3,28 +3,32 @@
 // O(|V||E|), generally fast
 
 #include <vector>
+#include <string>
 #include <algorithm>
 
 using namespace std;
 
-template<int MAXX, int MAXY>
 struct Hungarian {
-  int nx, ny, mx[MAXX], my[MAXY];
-  vector<int> e[MAXX];
+  int nx, ny;
+  vector<int> mx, my;
+  vector<vector<int> > e;
 
   void init(int nx, int ny) {
     this->nx = nx;
     this->ny = ny;
-    for (int i = 0; i < nx; ++i) {
-      e[i].clear();
-    }
+    mx.resize(nx);
+    my.resize(ny);
+    e.clear();
+    e.resize(nx);
+    mark.resize(nx);
   }
 
   void add(int a, int b) {
     e[a].push_back(b);
   }
 
-  bool mark[MAXX];
+  // vector<bool> is evil!!!
+  basic_string<bool> mark;
 
   bool augment(int i) {
     if (!mark[i]) {
@@ -42,10 +46,10 @@ struct Hungarian {
 
   int gao() {
     int ret = 0;
-    fill(mx, mx + nx, -1);
-    fill(my, my + ny, -1);
+    fill(mx.begin(), mx.end(), -1);
+    fill(my.begin(), my.end(), -1);
     for (int i = 0; i < nx; ++i) {
-      fill(mark, mark + nx, false);
+      fill(mark.begin(), mark.end(), false);
       if (augment(i)) {
         ++ret;
       }
