@@ -20,6 +20,16 @@ task :default => [:test]
 task :testbin do
   dir = Rake.original_dir
   src = `find "#{dir}" -wholename '*GTest.cc'`.lines.map(&:chomp)
+  src.each do |i|
+    dep = []
+    dep << "GTestHelper.cpp"
+    dep << "../#{$1}.cpp" if i =~ /(\w+)GTest.cc$/
+    dep = dep.map{|j| File.join(File.dirname(i), j)}
+    dep = dep.select{|j| File.exists? j}
+    dep << i
+    file i.ext('.o') => dep
+  end
+
   src += SRC.map{|i| File.join(Dir.pwd, i)}
   obj = src.map{|i| i.ext('.o')}
   file BIN => obj do
