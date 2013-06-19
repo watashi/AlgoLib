@@ -9,3 +9,8 @@
 
 * [Knuth–Morris–Pratt algorithm](http://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm)
 
+## Gusfield's Algorithm (Z.cpp)
+
+* Z function: longest common prefix of `s` and `s[i..]`
+* `s[0..z(i)-1] = s[i...i+z(i)-1]`, or `s[0, z(i)] = s[i, z(i)]`
+
