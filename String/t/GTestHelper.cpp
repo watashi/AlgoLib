@@ -53,10 +53,9 @@ static const vector<pair<string, string> > biolerplate2 = {
   {"ABCDABCDABDE ABCDAB ABC", "ABCDABE"},
 };
 
-static inline string randstr(int seed, char a = 'A', char b = 'C') {
-  static const int MAXLEN = 4096;
+static inline string randstr(int seed, char a = 'A', char b = 'C', int len = 4096) {
   mt19937 rng(seed);
-  string ret(1 + rng() % MAXLEN, a);
+  string ret(1 + rng() % len, a);
   uniform_int_distribution<char> uid(a, b);
   uid.__generate(ret.begin(), ret.end(), rng);
   return ret;
