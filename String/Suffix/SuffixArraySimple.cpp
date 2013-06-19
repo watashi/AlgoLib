@@ -25,7 +25,7 @@ struct SuffixArraySimple: SuffixArrayBase {
     for (int i = 0; i < n; ++i) {
       rank[i] = a[i];
     }
-    for (int m = 1; m < n; m <<= 1) {
+    for (int m = 1; (m == 1 && n == 1) || m < n; m <<= 1) {
       vector<pair<int, int> > suffix(n);
       for (int i = 0; i < n; ++i) {
         sa[i] = i;
@@ -42,9 +42,6 @@ struct SuffixArraySimple: SuffixArrayBase {
       }
     }
 
-    if (n == 1) {
-      sa[0] = rank[0] = 0;
-    }
     SuffixArrayBase::init(n, a);
   }
 };
