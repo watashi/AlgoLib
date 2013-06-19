@@ -9,6 +9,14 @@
 
 using namespace std;
 
+#define CONCAT(a, b) a ## b
+#define CONCAT_EX(a, b) CONCAT(a, b)
+
+#define TEST_EX(a, b) TEST(a, b)
+#define TEST_F_EX(a, b) TEST_F(a, b)
+#define TEST_P_EX(a, b) TEST_P(a, b)
+#define INSTANTIATE_TEST_CASE_P_EX(a, b, c) INSTANTIATE_TEST_CASE_P(a, b, c)
+
 inline int rand(int n) {
   return rand() % n;
 }

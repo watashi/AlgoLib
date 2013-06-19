@@ -5,8 +5,6 @@
 
 using namespace boost;
 
-#define CONCAT(prefix, suffix) prefix ## suffix
-#define CONCAT_EX(prefix, suffix) CONCAT(prefix, suffix)
 #define DISJOINT_SET_TEST CONCAT_EX(DISJOINT_SET, Test)
 
 class DISJOINT_SET_TEST: public ::testing::TestWithParam<int> {
@@ -42,8 +40,6 @@ protected:
 
 DISJOINT_SET DISJOINT_SET_TEST::ds;
 
-#define TEST_F_EX(a, b) TEST_F(a, b)
-
 TEST_F_EX(DISJOINT_SET_TEST, FriendOnlyExample) {
   int n = 5;
   vector<Query> q = {
@@ -59,8 +55,6 @@ TEST_F_EX(DISJOINT_SET_TEST, FriendOnlyExample) {
   };
   test(n, q);
 }
-
-#define TEST_P_EX(a, b) TEST_P(a, b)
 
 TEST_P_EX(DISJOINT_SET_TEST, FriendOnlyRandom) {
   int n = GetParam();
@@ -80,8 +74,6 @@ TEST_P_EX(DISJOINT_SET_TEST, FriendOnlyRandom) {
   }
   test(n, q);
 }
-
-#define INSTANTIATE_TEST_CASE_P_EX(a, b, c) INSTANTIATE_TEST_CASE_P(a, b, c)
 
 INSTANTIATE_TEST_CASE_P_EX(, DISJOINT_SET_TEST,
   ::testing::Values(10, 100, 1000, 10000, 100000, DISJOINT_SET_TEST::MAXN));
