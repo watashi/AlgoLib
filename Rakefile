@@ -2,7 +2,7 @@ require 'rake'
 require 'rake/clean'
 
 BIN = 't/gtest_main'
-SRC = %w(t/gtest_main.cc t/gtest-all.cc)
+SRC = %w(t/gtest/gtest_main.cc t/gtest/gtest-all.cc)
 INC = File.join(Dir.pwd, 't/')
 
 CXX = 'g++'
@@ -17,7 +17,7 @@ end
 
 task :default => [:test]
 
-task :testbin do
+task :build do
   dir = Rake.original_dir
   src = `find "#{dir}" -wholename '*GTest.cc'`.lines.map(&:chomp)
   src.each do |i|
@@ -38,6 +38,6 @@ task :testbin do
   Rake::Task[BIN.to_sym].invoke
 end
 
-task :test => :testbin do
+task :test => :build do
   sh "ulimit -s unlimited && ./#{BIN} --gtest_shuffle"
 end

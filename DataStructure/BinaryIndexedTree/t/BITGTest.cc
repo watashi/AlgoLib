@@ -28,9 +28,9 @@ void test(const int n, const int m, const T a, const T b) {
 
     T sum = 0;
     for (int j = 0; j <= n; ++j) {
-      ASSERT_NEAR(sum, bit.sum(j), EPS) << "[" << k << "][" << j << "]";
+      ASSERT_NEAR((double)sum, (double)bit.sum(j), EPS) << "[" << k << "][" << j << "]";
       if (j < n) {
-        ASSERT_NEAR(vec[j], bit.get(j), EPS) << "[" << k << "][" << j << "]";
+        ASSERT_NEAR((double)vec[j], (double)bit.get(j), EPS) << "[" << k << "][" << j << "]";
         sum += vec[j];
       }
     }

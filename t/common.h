@@ -1,11 +1,10 @@
-#ifndef _ALOG_LIB_COMMON
-#define _ALOG_LIB_COMMON
-
-#include <gtest/gtest.h>
+#pragma once
 
 #include <vector>
 #include <cstdlib>
 #include <algorithm>
+
+#include "gtest/gtest.h"
 
 using namespace std;
 
@@ -38,5 +37,3 @@ vector<T> normalize(vector<T> v) {
   sort(v.begin(), v.end());
   return v;
 }
-
-#endif
