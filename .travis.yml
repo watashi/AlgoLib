@@ -1,0 +1,14 @@
+language: cpp
+
+compiler:
+  - gcc
+  - clang
+
+env:
+  - GLIBCXX_DEBUG=1
+  - NO_GLIBCXX_DEBUG=1
+
+install:
+  - sudo apt-get install -qq libboost-dev
+
+script: rake test
