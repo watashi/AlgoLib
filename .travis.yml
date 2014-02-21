@@ -9,6 +9,8 @@ env:
   - NO_GLIBCXX_DEBUG=1
 
 install:
-  - sudo apt-get install -qq libboost-dev
+  - $CXX --version
+  - sudo apt-get install -y libboost-all-dev
 
-script: rake test
+script:
+  - rake test

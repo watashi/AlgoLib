@@ -6,7 +6,7 @@ SRC = %w(t/gtest/gtest_main.cc t/gtest/gtest-all.cc)
 INC = File.join(Dir.pwd, 't/')
 
 CXX = ENV['CXX'] || 'g++'
-CXXFLAGS = '-std=c++11 -O2 -Wall -Wextra -Wconversion'
+CXXFLAGS = '-std=c++0x -O2 -Wall -Wextra -Wconversion'
 CXXFLAGS << ' -D_GLIBCXX_DEBUG' unless ENV['NO_GLIBCXX_DEBUG']
 
 CLEAN.include('**/*.o')
