@@ -2,6 +2,21 @@
 
 * Complexity: Naive > Simple > Young > Linear
 
+* LCP:
+
+    sa.init(n, a);
+    rmq.init(n, sa.height.data());
+
+    // lcp of a[i..-1] and a[j..-1]
+    int lcp(int i, int j) {
+      i = sa.rank[i];
+      j = sa.rank[j];
+      if (i > j) {
+        swap(i, j);
+      }
+      return i < j ? rmq.value(i + 1, j + 1) : (int)sa.rank.size() - i;
+    }
+
 #### Wiki
 
 * [Suffix array](http://en.wikipedia.org/wiki/Suffix_array) `sa` / `rank`
