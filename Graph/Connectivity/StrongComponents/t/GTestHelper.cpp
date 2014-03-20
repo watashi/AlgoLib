@@ -39,7 +39,7 @@ TEST_P_EX(SCCTest, Random) {
   scc.gao();
 
   vector_property_map<int> id(n);
-  int ncomp = strong_components(g, id);
+  size_t ncomp = strong_components(g, id);
   ASSERT_EQ(ncomp, scc.scc.size()) << "number of strong components";
 
   vector<vector<int> > v(ncomp);

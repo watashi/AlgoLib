@@ -50,7 +50,7 @@ TEST_P(BCCTarjanTest, Random) {
   ASSERT_EQ(normalize(cut), normalize(tarjan.cut)) << "articulation points";
 
   vector<int> comp(m);
-  int ncomp = biconnected_components(g,
+  size_t ncomp = biconnected_components(g,
     make_iterator_property_map(comp.begin(), get(edge_index, g)));
   ASSERT_EQ(ncomp, tarjan.bcc.size()) << "number of biconnected components";
 

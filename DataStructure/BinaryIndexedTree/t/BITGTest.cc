@@ -6,8 +6,8 @@
 using namespace std;
 
 template<typename T, typename RND>
-void test(const int n, const int m, const T a, const T b) {
-  static const double EPS = 1e-10;
+static void test(const int n, const int m, const T a, const T b) {
+  static const double EPS = 1e-8;
   BIT<T> bit;
   vector<T> vec(n);
   mt19937_64 rng;
@@ -28,9 +28,9 @@ void test(const int n, const int m, const T a, const T b) {
 
     T sum = 0;
     for (int j = 0; j <= n; ++j) {
-      ASSERT_NEAR(sum, bit.sum(j), EPS) << "[" << k << "][" << j << "]";
+      ASSERT_NEAR((double)sum, (double)bit.sum(j), EPS);
       if (j < n) {
-        ASSERT_NEAR(vec[j], bit.get(j), EPS) << "[" << k << "][" << j << "]";
+        ASSERT_NEAR((double)vec[j], (double)bit.get(j), EPS);
         sum += vec[j];
       }
     }
@@ -47,7 +47,7 @@ TEST(BITTest, Int) {
 TEST(BITTest, Real) {
   const int N = 1024;
   const int M = 4096;
-  const double INF = 1000;
+  const double INF = 10000;
   test<double, uniform_real_distribution<double> >(N, M, -INF, INF);
 }
 
