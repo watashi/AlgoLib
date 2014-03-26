@@ -36,7 +36,7 @@ task :build do
   src += SRC.map{|i| File.join(Dir.pwd, i)}
   obj = src.map{|i| i.ext('.o')}
   file BIN => obj do
-    sh "#{CXX} -lpthread -o #{BIN} #{obj * ' '}"
+    sh "#{CXX} -pthread -o #{BIN} #{obj * ' '}"
   end
   Rake::Task[BIN.to_sym].invoke
 end
