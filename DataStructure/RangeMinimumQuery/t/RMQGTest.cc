@@ -14,7 +14,7 @@ TEST(RMQTest, Value) {
   RMQ<double> rmq;
   vector<double> v(N);
 
-  urd.__generate(v.begin(), v.end(), rng);
+  generate(v.begin(), v.end(), [&]{ return urd(rng); });
   rmq.init((int)v.size(), &v[0]);
   for (int i = 0; i < N; ++i) {
     double val = v[i];
@@ -32,7 +32,7 @@ TEST(RMQTest, Index) {
   RMQ<char> rmq;
   string s(N, '\0');
 
-  uid.__generate(s.begin(), s.end(), rng);
+  generate(s.begin(), s.end(), [&]{ return uid(rng); });
   rmq.init((int)s.size(), &s[0]);
   for (int i = 0; i < N; ++i) {
     int idx = i;

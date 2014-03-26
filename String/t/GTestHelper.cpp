@@ -57,7 +57,7 @@ static inline string randstr(int seed, char a = 'A', char b = 'C', int len = 409
   mt19937 rng(seed);
   string ret(1 + rng() % len, a);
   uniform_int_distribution<char> uid(a, b);
-  uid.__generate(ret.begin(), ret.end(), rng);
+  generate(ret.begin(), ret.end(), [&]{ return uid(rng); });
   return ret;
 }
 
