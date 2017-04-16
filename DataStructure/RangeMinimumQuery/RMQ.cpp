@@ -1,5 +1,6 @@
-#include <climits>    // CHAR_BIT
 #include <algorithm>  // copy
+#include <climits>    // CHAR_BIT
+#include <vector>
 
 using namespace std;
 
