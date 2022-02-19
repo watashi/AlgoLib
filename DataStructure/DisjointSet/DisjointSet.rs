@@ -1,25 +1,25 @@
-struct DisjointSet {
-    p: Vec<usize>,
-}
+pub struct DisjointSet(Vec<usize>);
 
 impl DisjointSet {
-    fn new(n: usize) -> DisjointSet {
-        DisjointSet {
-            p: (0..n).collect(),
-        }
+    pub fn new(n: usize) -> Self {
+        DisjointSet((0..n).collect())
     }
 
-    fn getp(&mut self, x: usize) -> usize {
-        if self.p[x] != x {
-            self.p[x] = self.getp(self.p[x]);
-        }
-        self.p[x]
+    pub fn clear(&mut self) {
+        self.0.iter_mut().enumerate().for_each(|(i, j)| *j = i);
     }
 
-    fn setp(&mut self, x: usize, y: usize) -> Option<(usize, usize)> {
+    pub fn getp(&mut self, x: usize) -> usize {
+        if self.0[x] != x {
+            self.0[x] = self.getp(self.0[x]);
+        }
+        self.0[x]
+    }
+
+    pub fn setp(&mut self, x: usize, y: usize) -> Option<(usize, usize)> {
         let x = self.getp(x);
         let y = self.getp(y);
-        self.p[x] = y;
+        self.0[x] = y;
         if x != y {
             Some((x, y))
         } else {
