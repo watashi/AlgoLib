@@ -10,6 +10,16 @@ pub trait SegTreeOp<T>: Copy {
     fn combine(&mut self, other: &Self);
 }
 
+impl<T: SegTreeMonoid> SegTreeOp<T> for T {
+    fn apply(&self, _: SegTreeIndex, _: SegTreeIndex, value: &mut T) {
+        *value = value.append(self);
+    }
+
+    fn combine(&mut self, other: &Self) {
+        *self = self.append(other);
+    }
+}
+
 pub struct SegTree<T, Op> {
     start: SegTreeIndex,
     end: SegTreeIndex,
