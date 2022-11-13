@@ -23,6 +23,12 @@ struct Manacher {
       }
     }
   }
+
+  // [l, r)
+  bool isPalindrome(int l, int r) {
+    int m = l + r - 1;
+    return m / 2 - p[m] < l;
+  }
 };
 
 // brute-force
